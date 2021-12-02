@@ -9,8 +9,8 @@ Spelerskaarten = []
 AIKaarten = []
 pile = []
 
-for x in range(4):
-    color = Kleur[x]
+for i in range(4):
+    color = Kleur[i]
     Stapel.append(color + " 0")
     for z in range(2): 
         for y in range(9):
@@ -22,7 +22,7 @@ for x in range(4):
         Stapel.append(Kleurloos[y])
 random.shuffle(Stapel)
 
-def startGame():
+def startSpel():
     input("Druk ENTER om te beginnen met UNO!")
     startTurn = random.randint(0, 1)
     for x in range(7):
@@ -38,10 +38,10 @@ def startGame():
         print("Opponent begins.")
 
 
-def showDevinfo():
+def info():
     print("de stapel in het midden van de tafel: "+ ", ".join(pile))
     print("uw huidige hand: "+ ", ".join(Spelerskaarten))
     print("de huidige hand van de tegenstander: " + ", ".join(AIKaarten))
 
-startGame()
-showDevinfo()
+startSpel()
+info()
