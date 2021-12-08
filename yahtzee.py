@@ -55,6 +55,199 @@ def diceRoll():
     else:
         diceRoll()
 
+def dicereroll():
+    global rerollQuestion, rol1, rol2, rol3, rol4, rol5
+    if '1' in rerollQuestion:
+        rerollQuestion = list(rerollQuestion)
+        rol1 = random.choice(dice)
+    if '2' in rerollQuestion:
+        rerollQuestion = list(rerollQuestion)
+        rol2 = random.choice(dice)
+    if '3' in rerollQuestion:
+        rerollQuestion = list(rerollQuestion)
+        rol3 = random.choice(dice)
+    if '4' in rerollQuestion:
+        rerollQuestion = list(rerollQuestion)
+        rol4 = random.choice(dice)
+    if '5' in rerollQuestion:
+        rerollQuestion = list(rerollQuestion)
+        rol5 = random.choice(dice)
+    if '6' in rerollQuestion:
+        rerollQuestion = list(rerollQuestion)
+        rol6 = random.choice(dice)
 
+while True:
+    i = 0
+    counter = {}
+    rerollQuestion = ('')
+    ending = False
+    rol1 = random.choice(dice)
+    rol2 = random.choice(dice)
+    rol3 = random.choice(dice)
+    rol4 = random.choice(dice)
+    rol5 = random.choice(dice)
+    Threeofakind = False
+    Fourofakind = False
+    change = False
+    FullHouse = False
+    LargeStraight = False
+    SmallStraight = False
+    Yathzee = False
+    
+    for x in range(0,2):
+        canContinue = diceRoll()
+        if canContinue == False:
+            break
+        else:
+            continue
+    
+    if ending == True:
+        print('De ronde in beindigd, de overgebleven cijfers zijn: '+ str(rol1) +','+ str(rol2) +','+ str(rol3) +',' + str(rol4) +','+ str(rol5))
+    else:
+        print('Dat was de laatse ronde, de overgebleven cijfers zijn: '+ str(rol1) +','+ str(rol2) +','+ str(rol3) +',' + str(rol4) +','+ str(rol5))
+    allRolls = [rol1, rol2, rol3, rol4, rol5]
+    print('Waar wil je alle cijfer zetten in deze ronde? ')
+    if 1 in allRolls and not position1:
+        print('Zet ' + str(allRolls.count(1) * 1) +' in het eerste vakje')
+    elif not position1:
+        print('Zet 0 in het eerste vakje ')
+    if 2 in allRolls and not position1:
+        print('Zet ' + str(allRolls.count(2) * 2) +' in het eerste vakje')
+    elif not position1:
+        print('Zet 0 in het tweede vakje ')
+    if 3 in allRolls and not position1:
+        print('Zet ' + str(allRolls.count(3) * 3) +' in het eerste vakje')
+    elif not position1:
+        print('Zet 0 in het derde vakje ')
+    if 4 in allRolls and not position1:
+        print('Zet ' + str(allRolls.count(4) * 4) +' in het eerste vakje')
+    elif not position1:
+        print('Zet 0 in het vierde vakje ')
+    if 5 in allRolls and not position1:
+        print('Zet ' + str(allRolls.count(5) * 5) +' in het eerste vakje')
+    elif not position1:
+        print('Zet 0 in het vijfde vakje ')
+    if 6 in allRolls and not position1:
+        print('Zet ' + str(allRolls.count(6) * 6) +' in het eerste vakje')
+    elif not position1:
+        print(' Zet 0 in het zesde vakje ')
+    if allRollsc != '':
+        dictonary()
+    combi = rol1 + rol2 + rol3 + rol4 + rol5 
+    if 3 in allRollsc.values() and not positionA or 4 in allRollsc.values() and not positionA or 5 in allRollsc.values() and not positionA :
+        print("Zet "+ str(combi) + " in het three of a kind vakje")
+        Threeofakind = True
+    if 4 in allRollsc.values() and not positionB or 5 in allRollsc.values() and not positionB:
+        print("Zet "+ str(combi) + " in het four of a kind vakje")
+        Fourofakind = True
+    if 3 in allRollsc.values() and 2 in allRollsc.values() and not positionC:
+        print ("Zet 25 in het full house vakje")
+        FullHouse = True
+    if 1 in allRolls and 2 in allRolls and 3 in allRolls and 4 in allRolls and not positionD or 2 in allRolls and 3 in allRolls and 4 in allRolls and 5 in allRolls and not positionD or 3 in allRolls and 4 in allRolls and 5 in allRolls and 6 in allRolls and not positionD:
+        print ("Zet 30 in het small straight vakje")
+        SmallStraight = True
+    if 1 in allRolls and 2 in allRolls and 3 in allRolls and 4 in allRolls and 5 in allRolls and not positionE or 2 in allRolls and 3 in allRolls and 4 in allRolls and 5 in allRolls and 6 in allRolls and not positionE:
+        print("Zet 40 in het large straight vakje")
+        LargeStraight = True
+    if 5 in allRollsc.values() and not positionF:
+        print("Zet 50 in het yahtzee vakje")
+        Yathzee = True
+    if 5 in allRollsc.values() and positionF:
+        print("Krijg een extra yahtzee!")
+        Yathzee = True
+    if not positionG:
+        print("Zet "+ str(combi)+ " in het chance vakje")
+        chance = True
+    while True:
+        choice = input("Voer de naam in van het vakje waar je een cijfer wilt ")
+        if choice.lower() == "eerste" and not position1:
+            position1.append(allRolls.count(1)* 1) 
+            break
+        elif choice.lower() == "tweede" and not position2:
+            position2.append(allRolls.count(2)* 2)
+            break
+        elif choice.lower() == "derde" and not position3:
+            position3.append(allRolls.count(3)* 3)
+            break
+        elif choice.lower() == "vierde" and not position4:
+            position4.append(allRolls.count(4)* 4)
+            break
+        elif choice.lower() == "vijfde" and not position5:
+            position5.append(allRolls.count(5)* 5)
+            break
+        elif choice.lower() == "zesde" and not position6:
+            position6.append(allRolls.count(6)* 6)
+            break
+        elif choice.lower() == "three of a kind" and not positionA and Threeofakind == True:
+            positionA.append(combi)
+            break
+        elif choice.lower() == "four of a kind" and not positionB and Fourofakind == True:
+            positionB.append(combi)
+            break
+        elif choice.lower() == "full house" and not positionC and FullHouse == True:
+            positionC.append(25)
+            break
+        elif choice.lower() == "small straight" and not positionD and SmallStraight == True:
+            positionD.append(30)
+            break
+        elif choice.lower() == "large straight" and not positionE and LargeStraight == True:
+            positionE.append(40)
+            break
+        elif choice.lower() == "yahtzee" and Yathzee == True:
+            if not positionF:
+                positionF.append(50)
+                yahtzeecounter = int(yahtzeecounter) + 1
+                break
+            else:
+                extracounter = str(extracounter) + "X "
+                extrayahtzeepoints = int(extrayahtzeepoints) + 100
+                print('Je hebt meer dan 1 yahtzee! Je extra punten voor deze extra yahtzee worden op het eind bij je score geteld')
+                break
+        elif choice.lower() == "chance" and not positionG and chance == True:
+            positionG.append(combi)
+            break
+        else:
+            print("Oeps dat is geen mogelijke keuze mischien heb je het vakje al gevult probeer het nog eens")
+            continue
 
-diceRoll()
+    print("Een: "+str(position1))
+    print("Twee: "+str(position2))
+    print("Drie: "+str(position3))
+    print("Vier: "+str(position4))
+    print("Vijf: "+str(position5))
+    print("Zes: "+str(position6))
+    print("Three of a kind: "+str(positionA))
+    print("Four of a kind: "+str(positionB))
+    print("Full house: "+str(positionC))
+    print("Small straight: "+str(positionD))
+    print("Large straight: "+str(positionE))
+    print("Yahtzee: "+str(positionF))
+    print("Chance: "+str(positionG))    
+    if not extracounter:
+        pass
+    else:
+        print("aantal extra yahtzee's: "+ str(extracounter))
+
+    if position1 and position2 and position3 and position4 and position5 and position6:
+        if not positionA:
+            positionA.append(0)
+        if not positionB:
+            positionB.append(0)
+        if not positionC:
+            positionC.append(0)
+        if not positionD:
+            positionD.append(0)
+        if not positionE:
+            positionE.append(0)
+        if not positionF:
+            positionF.append(0)
+        if not positionG:
+            positionG.append(0)
+
+        combined = int(position1[0]) + int(position2[0]) + int(position3[0]) + int(position4[0]) + int(position5[0]) + int(position6[0])
+        if combined > 63:
+            eindscore = int(eindscore) + 35
+        eindscore = int(combined) + int(positionA[0]) + int(positionB[0]) + int(positionC[0]) + int(positionD[0]) + int(positionE[0]) + int(positionF[0]) + int(positionG[0]) + int(extrayahtzeepoints)
+        print("Dat was het spel en dit is je eindscore: ")
+        print(str(eindscore))
+        quit()
